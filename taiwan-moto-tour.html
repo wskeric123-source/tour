@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>台灣機車環島 · 十日壯遊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+
+<style>
+/* ── CSS Variables ─────────────────────────────────── */
+:root {
+  --sand:    #e8dcc8;
+  --clay:    #c9a97a;
+  --bark:    #7a5c3c;
+  --dusk:    #3d2f20;
+  --moss:    #6b7c5c;
+  --sky:     #8ab4cc;
+  --cream:   #f5f0e8;
+  --ink:     #1c1410;
+  --mist:    rgba(232,220,200,.45);
+
+  --font-serif: 'Playfair Display', 'Noto Serif TC', serif;
+  --font-body:  'Noto Sans TC', sans-serif;
+
+  --radius: 16px;
+  --shadow: 0 8px 40px rgba(60,40,20,.13);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb { background: var(--clay); border-radius: 3px; }
+
+/* ── HERO ──────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: var(--dusk);
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 30%, rgba(138,180,204,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(107,124,92,.25) 0%, transparent 60%),
+    linear-gradient(160deg, #1c1410 0%, #3d2f20 40%, #5a3e28 70%, #7a5c3c 100%);
+  animation: bgShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgShift {
+  from { filter: brightness(1); }
+  to   { filter: brightness(1.08) saturate(1.1); }
+}
+
+/* SVG landscape silhouette */
+.hero-landscape {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  pointer-events: none;
+}
+
+/* Stars / particles */
+.hero-stars {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 18%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 8%,  rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 42% 22%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 30%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 28% 5%,  rgba(255,255,255,.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5%  35%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 12%, rgba(255,255,255,.6) 0%, transparent 100%);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .7; }
+  to   { opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(2rem, 8vw, 5rem) clamp(1.5rem, 6vw, 4rem) clamp(3rem, 10vw, 6rem);
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--clay);
+  border: 1px solid var(--clay);
+  padding: .35em 1em;
+  border-radius: 50px;
+  margin-bottom: 1.4rem;
+  animation: fadeUp .8s ease both;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 10vw, 6rem);
+  color: var(--sand);
+  line-height: 1.1;
+  margin-bottom: .6rem;
+  animation: fadeUp .8s .15s ease both;
+}
+
+.hero-title em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--clay);
+  display: block;
+  font-size: .55em;
+  letter-spacing: .05em;
+  margin-bottom: .2em;
+}
+
+.hero-sub {
+  color: rgba(232,220,200,.65);
+  font-size: clamp(.85rem, 2.5vw, 1rem);
+  font-weight: 300;
+  letter-spacing: .08em;
+  margin-bottom: 2rem;
+  animation: fadeUp .8s .3s ease both;
+}
+
+.hero-stats {
+  display: flex;
+  gap: clamp(1.5rem, 5vw, 3rem);
+  animation: fadeUp .8s .45s ease both;
+}
+
+.hero-stat-item { display: flex; flex-direction: column; }
+.hero-stat-num {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  color: var(--clay);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: .72rem;
+  color: rgba(232,220,200,.55);
+  letter-spacing: .1em;
+  margin-top: .2rem;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem; right: 2rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  color: rgba(232,220,200,.5);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  animation: fadeUp .8s .6s ease both;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, var(--clay));
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  50.1%{ transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── NAV ───────────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,240,232,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,169,122,.3);
+  padding: .75rem clamp(1rem,5vw,3rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--dusk);
+  letter-spacing: .05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: clamp(.8rem, 3vw, 2rem);
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .08em;
+  color: var(--bark);
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--clay); }
+
+/* ── SECTION COMMON ────────────────────────────────── */
+section { padding: clamp(3rem,10vw,6rem) clamp(1.2rem,5vw,3rem); }
+
+.section-label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: .5rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--dusk);
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+}
+
+/* ── INTRO ─────────────────────────────────────────── */
+.intro { background: var(--cream); max-width: 900px; margin: 0 auto; }
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+@media (max-width: 600px) { .intro-grid { grid-template-columns: 1fr; } }
+
+.intro-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  border-left: 3px solid var(--clay);
+  box-shadow: var(--shadow);
+  transition: transform .25s;
+}
+.intro-card:hover { transform: translateY(-4px); }
+.intro-card h3 { font-family: var(--font-serif); font-size: 1rem; color: var(--bark); margin-bottom: .4rem; }
+.intro-card p { font-size: .85rem; color: #5a4a3a; }
+
+/* ── TIMELINE / DAY SWITCHER ───────────────────────── */
+.itinerary { background: var(--sand); }
+.itinerary-inner { max-width: 960px; margin: 0 auto; }
+
+/* Day tabs */
+.day-tabs {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.day-tab {
+  cursor: pointer;
+  padding: .45em 1.1em;
+  border-radius: 50px;
+  border: 1.5px solid var(--clay);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  letter-spacing: .06em;
+  color: var(--bark);
+  transition: all .2s;
+}
+.day-tab:hover { background: var(--clay); color: white; }
+.day-tab.active { background: var(--bark); border-color: var(--bark); color: var(--sand); }
+
+/* Day panel */
+.day-panel { display: none; }
+.day-panel.active { display: block; animation: panelIn .35s ease; }
+@keyframes panelIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.day-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+.day-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--clay);
+  line-height: 1;
+}
+.day-meta { display: flex; flex-direction: column; }
+.day-city {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--dusk);
+}
+.day-route {
+  font-size: .78rem;
+  color: var(--bark);
+  letter-spacing: .05em;
+}
+.day-transport {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: white;
+  border-radius: 50px;
+  padding: .4em 1em;
+  font-size: .78rem;
+  color: var(--bark);
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.day-transport .icon { font-size: 1.1em; }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 2.2rem; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0; bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--clay), transparent);
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 1.8rem;
+  animation: fadeUp .5s ease both;
+}
+.tl-item:nth-child(1) { animation-delay: .05s; }
+.tl-item:nth-child(2) { animation-delay: .12s; }
+.tl-item:nth-child(3) { animation-delay: .19s; }
+.tl-item:nth-child(4) { animation-delay: .26s; }
+.tl-item:nth-child(5) { animation-delay: .33s; }
+
+.tl-dot {
+  position: absolute;
+  left: -2.2rem;
+  top: .5rem;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--clay);
+  border: 2.5px solid var(--sand);
+  box-shadow: 0 0 0 3px rgba(201,169,122,.25);
+}
+
+.tl-time {
+  font-size: .68rem;
+  letter-spacing: .12em;
+  color: var(--bark);
+  text-transform: uppercase;
+  margin-bottom: .2rem;
+}
+
+.tl-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.1rem 1.4rem;
+  box-shadow: var(--shadow);
+  transition: transform .25s, box-shadow .25s;
+}
+.tl-card:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(60,40,20,.16); }
+
+.tl-card h4 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--dusk);
+  margin-bottom: .3rem;
+}
+.tl-card p { font-size: .83rem; color: #6a5548; margin-bottom: .5rem; }
+.tl-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+.tl-tag {
+  font-size: .65rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .2em .7em;
+  border-radius: 50px;
+  background: var(--sand);
+  color: var(--bark);
+}
+.tl-tag.food { background: #f0e8d8; color: #7a4a20; }
+.tl-tag.nature { background: #ddeedd; color: #3a5a3a; }
+.tl-tag.culture { background: #dde4ee; color: #3a4a6a; }
+.tl-tag.scenic { background: #eedde8; color: #6a3a5a; }
+
+/* Transport note */
+.transport-note {
+  margin-top: 1.8rem;
+  background: linear-gradient(135deg, var(--dusk), var(--bark));
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  color: var(--sand);
+  font-size: .85rem;
+}
+.transport-note strong { color: var(--clay); font-family: var(--font-serif); display: block; margin-bottom: .4rem; font-size: 1rem; }
+.transport-note span { opacity: .8; }
+
+/* ── ROUTE MAP VISUAL ──────────────────────────────── */
+.route-section { background: var(--cream); }
+.route-section .section-title { text-align: center; }
+.route-section .section-label { text-align: center; }
+
+.route-visual {
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.route-svg-wrap {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* ── TIPS ──────────────────────────────────────────── */
+.tips { background: var(--dusk); }
+.tips .section-label { color: var(--clay); }
+.tips .section-title { color: var(--sand); }
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.tip-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,169,122,.2);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  transition: background .2s, transform .25s;
+}
+.tip-card:hover { background: rgba(201,169,122,.1); transform: translateY(-4px); }
+.tip-icon { font-size: 1.6rem; margin-bottom: .7rem; }
+.tip-card h3 { font-family: var(--font-serif); color: var(--clay); font-size: 1rem; margin-bottom: .5rem; }
+.tip-card p { font-size: .82rem; color: rgba(232,220,200,.7); }
+
+/* ── FOOTER ────────────────────────────────────────── */
+footer {
+  background: var(--ink);
+  padding: 2.5rem clamp(1.2rem,5vw,3rem);
+  text-align: center;
+}
+footer p { font-size: .78rem; color: rgba(232,220,200,.35); letter-spacing: .1em; }
+footer em { color: var(--clay); font-style: normal; }
+
+/* ── UTILITIES ─────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-stars"></div>
+
+  <!-- SVG Mountain / Coastline silhouette -->
+  <svg class="hero-landscape" viewBox="0 0 800 300" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+    <!-- back mountains -->
+    <path d="M0 300 L0 180 Q40 120 100 150 Q180 80 260 130 Q340 60 420 110 Q500 40 560 100 Q640 50 700 90 Q760 60 800 80 L800 300 Z" fill="rgba(61,47,32,.6)" />
+    <!-- mid hills -->
+    <path d="M0 300 L0 220 Q80 180 160 200 Q240 160 320 195 Q400 165 480 210 Q560 175 640 205 Q720 180 800 200 L800 300 Z" fill="rgba(61,47,32,.8)" />
+    <!-- foreground road silhouette -->
+    <path d="M0 300 L0 270 Q200 255 400 265 Q600 255 800 270 L800 300 Z" fill="rgba(28,20,16,.9)" />
+    <!-- road center line -->
+    <rect x="360" y="272" width="12" height="6" rx="3" fill="rgba(201,169,122,.3)" />
+    <rect x="420" y="272" width="12" height="6" rx="3" fill="rgba(201,169,122,.3)" />
+    <rect x="480" y="274" width="12" height="6" rx="3" fill="rgba(201,169,122,.3)" />
+    <!-- moon -->
+    <circle cx="680" cy="55" r="28" fill="rgba(232,220,200,.12)" />
+    <circle cx="688" cy="48" r="24" fill="rgba(28,20,16,.5)" />
+    <!-- motorcycle silhouette (simple) -->
+    <g transform="translate(370, 255) scale(.45)">
+      <ellipse cx="10" cy="30" rx="18" ry="18" fill="none" stroke="rgba(201,169,122,.5)" stroke-width="4"/>
+      <ellipse cx="90" cy="30" rx="18" ry="18" fill="none" stroke="rgba(201,169,122,.5)" stroke-width="4"/>
+      <path d="M28 30 L50 15 L70 15 L72 30" fill="none" stroke="rgba(201,169,122,.5)" stroke-width="3"/>
+      <path d="M50 15 L54 5 L65 5" fill="none" stroke="rgba(201,169,122,.4)" stroke-width="2.5"/>
+      <path d="M72 30 L90 12" fill="none" stroke="rgba(201,169,122,.4)" stroke-width="3"/>
+      <circle cx="57" cy="15" r="6" fill="rgba(201,169,122,.25)"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">Taiwan Motorcycle Odyssey</div>
+    <h1 class="hero-title">
+      <em>十日壯遊</em>
+      台灣機車環島
+    </h1>
+    <p class="hero-sub">順時針 · 沿海岸線 · 穿越山脈 · 回到原點</p>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <span class="hero-stat-num">10</span>
+        <span class="hero-stat-label">天</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-num">1,200</span>
+        <span class="hero-stat-label">公里</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-num">7</span>
+        <span class="hero-stat-label">縣市</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-num">∞</span>
+        <span class="hero-stat-label">回憶</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <span class="nav-logo">🏍 環島日誌</span>
+  <ul class="nav-links">
+    <li><a href="#intro">概覽</a></li>
+    <li><a href="#itinerary">行程</a></li>
+    <li><a href="#route">路線</a></li>
+    <li><a href="#tips">貼士</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ INTRO ═══ -->
+<section class="intro" id="intro">
+  <p class="section-label reveal">Journey Overview</p>
+  <h2 class="section-title reveal">為什麼要騎機車環島？</h2>
+  <p class="reveal" style="color:#5a4a3a; max-width:600px; font-size:.9rem;">
+    台灣雖小，卻濃縮了壯麗山脈、太平洋岸線、熱帶雨林與百年老街。
+    騎車，讓你以最貼近土地的速度，聞到海風、感受坡道、在廟口停下來喝一杯仙草茶。
+  </p>
+  <div class="intro-grid">
+    <div class="intro-card reveal">
+      <h3>🌊 沿海壯景</h3>
+      <p>東海岸蘇花公路、墾丁夕陽、北海岸野柳，每段都是獨特的地形詩篇。</p>
+    </div>
+    <div class="intro-card reveal">
+      <h3>🏔 山林秘境</h3>
+      <p>太魯閣峽谷、阿里山雲海、南橫公路，高山空氣讓人心肺洗滌一新。</p>
+    </div>
+    <div class="intro-card reveal">
+      <h3>🍜 在地美食</h3>
+      <p>每個縣市都有自己的味道——台南牛肉湯、屏東黑鮪魚、花蓮奇萊麻糬。</p>
+    </div>
+    <div class="intro-card reveal">
+      <h3>🛤 自由節奏</h3>
+      <p>機車讓你隨時停靠無名小路，遇見當地人的日常，這才是環島的靈魂。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ITINERARY ═══ -->
+<section class="itinerary" id="itinerary">
+  <div class="itinerary-inner">
+    <p class="section-label reveal">Day by Day</p>
+    <h2 class="section-title reveal">十日行程總覽</h2>
+
+    <!-- Day Tabs -->
+    <div class="day-tabs reveal" id="dayTabs">
+      <button class="day-tab active" data-day="1">Day 1</button>
+      <button class="day-tab" data-day="2">Day 2</button>
+      <button class="day-tab" data-day="3">Day 3</button>
+      <button class="day-tab" data-day="4">Day 4</button>
+      <button class="day-tab" data-day="5">Day 5</button>
+      <button class="day-tab" data-day="6">Day 6</button>
+      <button class="day-tab" data-day="7">Day 7</button>
+      <button class="day-tab" data-day="8">Day 8</button>
+      <button class="day-tab" data-day="9">Day 9</button>
+      <button class="day-tab" data-day="10">Day 10</button>
+    </div>
+
+    <!-- Day Panels -->
+    <div id="dayPanels">
+
+      <!-- DAY 1 -->
+      <div class="day-panel active" data-panel="1">
+        <div class="day-header">
+          <span class="day-num">01</span>
+          <div class="day-meta">
+            <span class="day-city">台北出發 → 桃園・新竹</span>
+            <span class="day-route">北部平原，沿台1線南下</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 80 km
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">07:00</div>
+            <div class="tl-card">
+              <h4>台北 — 出發典禮</h4>
+              <p>在西門町早餐店吃完鍋貼，在愛國西路整裝，拍下出發前的合照。</p>
+              <div class="tl-tags"><span class="tl-tag food">早餐</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">09:30</div>
+            <div class="tl-card">
+              <h4>桃園 — 大溪老街</h4>
+              <p>騎進大溪老街，欣賞巴洛克式立面，嚐一口豆干、花生糖，補給行程中第一塊台灣土地的味道。</p>
+              <div class="tl-tags"><span class="tl-tag culture">老街</span><span class="tl-tag food">小吃</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">13:00</div>
+            <div class="tl-card">
+              <h4>新竹 — 城隍廟商圈</h4>
+              <p>抵達新竹，午餐就是一碗道地新竹米粉加貢丸湯。城隍廟的炸物攤一定要試。</p>
+              <div class="tl-tags"><span class="tl-tag food">午餐</span><span class="tl-tag culture">廟宇</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">16:00</div>
+            <div class="tl-card">
+              <h4>新竹南寮漁港</h4>
+              <p>看台灣海峽的夕陽，吹西北季風，在海邊咖啡廳喝杯黑咖啡，和行程說一句「正式開始了」。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">夕陽</span><span class="tl-tag nature">海岸</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>台1線路況穩定，但桃園市區易塞車，建議 8:00 前出台北。新竹段有快速道路替代，若時間充裕，選縣道欣賞稻田景色。</span>
+        </div>
+      </div>
+
+      <!-- DAY 2 -->
+      <div class="day-panel" data-panel="2">
+        <div class="day-header">
+          <span class="day-num">02</span>
+          <div class="day-meta">
+            <span class="day-city">新竹 → 台中</span>
+            <span class="day-route">苗栗山線，穿越通霄・苑裡</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 110 km
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">08:00</div>
+            <div class="tl-card">
+              <h4>苗栗 — 通霄神社</h4>
+              <p>台灣保存最完整的日治神社之一，坐落小丘之上，清晨空氣清新，步道兩側被檜木包圍。</p>
+              <div class="tl-tags"><span class="tl-tag culture">歷史</span><span class="tl-tag nature">步道</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">11:00</div>
+            <div class="tl-card">
+              <h4>苑裡 — 藺草文化館</h4>
+              <p>苑裡是台灣藺草編織的故鄉，文化館有互動體驗，可以帶走自己編的小草帽當紀念品。</p>
+              <div class="tl-tags"><span class="tl-tag culture">工藝</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">14:30</div>
+            <div class="tl-card">
+              <h4>台中 — 宮原眼科</h4>
+              <p>日治時代眼科改建的網美甜點店，點一球台灣特色冰淇淋，在舊建築新靈魂的空間裡歇一歇。</p>
+              <div class="tl-tags"><span class="tl-tag food">甜點</span><span class="tl-tag culture">建築</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">18:00</div>
+            <div class="tl-card">
+              <h4>台中逢甲夜市</h4>
+              <p>全台灣最密集的夜市之一，雞排、奶茶、滷味、章魚小丸子，用晚餐慶祝第二天平安抵達。</p>
+              <div class="tl-tags"><span class="tl-tag food">夜市</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>建議走台61西濱快速道路接苗栗沿海，風景比台1更開闊。台中市區停車建議選大型停車場，避免騎進學區巷弄。</span>
+        </div>
+      </div>
+
+      <!-- DAY 3 -->
+      <div class="day-panel" data-panel="3">
+        <div class="day-header">
+          <span class="day-num">03</span>
+          <div class="day-meta">
+            <span class="day-city">台中 → 嘉義・阿里山</span>
+            <span class="day-route">台3線山線，爬升至 2,200m</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 130 km · 含爬坡
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">06:30</div>
+            <div class="tl-card">
+              <h4>彰化 — 肉圓早餐</h4>
+              <p>在彰化市區找一家傳統肉圓店，這是中部靈魂早餐。一份肉圓、一碗湯，準備迎接今天的山路。</p>
+              <div class="tl-tags"><span class="tl-tag food">早餐</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">10:00</div>
+            <div class="tl-card">
+              <h4>嘉義 — 奮起湖老街</h4>
+              <p>阿里山公路中途站，以便當聞名全台。在老街喝杯高山茶，望著雲霧從山谷間升起。</p>
+              <div class="tl-tags"><span class="tl-tag food">便當</span><span class="tl-tag nature">山景</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">14:00</div>
+            <div class="tl-card">
+              <h4>阿里山森林遊樂區</h4>
+              <p>千年神木、姊妹潭、三代木，穿梭在紅檜林間，空氣中帶著淡淡的檜木香。</p>
+              <div class="tl-tags"><span class="tl-tag nature">森林</span><span class="tl-tag scenic">神木</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">17:30</div>
+            <div class="tl-card">
+              <h4>阿里山日落 &amp; 夜宿山上</h4>
+              <p>若要追日出，在山上過夜是最佳選擇。山區溫度明顯下降，記得備妥防風外套。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">夕陽</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>阿里山公路（台18線）為連續彎道，不建議夜騎，出發時間要抓好。山上氣溫約 12–18°C，備妥雨衣；部分路段禁止大型車，機車反而靈活。</span>
+        </div>
+      </div>
+
+      <!-- DAY 4 -->
+      <div class="day-panel" data-panel="4">
+        <div class="day-header">
+          <span class="day-num">04</span>
+          <div class="day-meta">
+            <span class="day-city">嘉義 → 台南</span>
+            <span class="day-route">平原南下，古都飄香</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 70 km
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">07:00</div>
+            <div class="tl-card">
+              <h4>阿里山日出</h4>
+              <p>祝山觀日台等待太陽從雲海升起，這是台灣最著名的日出場景之一。雲層低時可見雲海金光。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">日出</span><span class="tl-tag nature">雲海</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">11:30</div>
+            <div class="tl-card">
+              <h4>台南 — 安平古堡</h4>
+              <p>荷蘭時代要塞，台灣歷史的起點。城牆上俯瞰台江，今昔對比，歷史在磚縫間呼吸。</p>
+              <div class="tl-tags"><span class="tl-tag culture">歷史</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">13:00</div>
+            <div class="tl-card">
+              <h4>台南必吃午餐</h4>
+              <p>牛肉湯＋虱目魚粥＋棺材板——台南是台灣的美食首都，每一餐都不能隨便。</p>
+              <div class="tl-tags"><span class="tl-tag food">午餐</span><span class="tl-tag food">台南小吃</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">16:00</div>
+            <div class="tl-card">
+              <h4>赤崁樓 &amp; 神農街</h4>
+              <p>下午漫步神農街，文創小店、老宅咖啡廳、街頭藝人讓這段行程慢下來，恰到好處。</p>
+              <div class="tl-tags"><span class="tl-tag culture">古蹟</span><span class="tl-tag scenic">老街</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>台南市區道路較窄，機車停放便利但請注意紅黃線。安平至市區約 20 分鐘。台南無捷運，機車是最高效的移動方式。</span>
+        </div>
+      </div>
+
+      <!-- DAY 5 -->
+      <div class="day-panel" data-panel="5">
+        <div class="day-header">
+          <span class="day-num">05</span>
+          <div class="day-meta">
+            <span class="day-city">台南 → 高雄 → 屏東墾丁</span>
+            <span class="day-route">南台灣，抵達島嶼最南端</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 120 km
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">09:00</div>
+            <div class="tl-card">
+              <h4>高雄 — 駁二藝術特區</h4>
+              <p>舊倉庫改建的文創園區，戶外裝置藝術豐富，輕軌就在旁邊，可在此小憩充電。</p>
+              <div class="tl-tags"><span class="tl-tag culture">藝術</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">12:00</div>
+            <div class="tl-card">
+              <h4>屏東 — 東港黑鮪魚</h4>
+              <p>如在季節內（4–6 月），東港黑鮪魚生魚片是絕對要吃的奢侈午餐，油脂豐富、入口即化。</p>
+              <div class="tl-tags"><span class="tl-tag food">海鮮</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">15:30</div>
+            <div class="tl-card">
+              <h4>鵝鑾鼻燈塔 — 最南端</h4>
+              <p>台灣最南點，巴士底燈塔俯瞰巴士海峽，風強浪大，但站在這裡有種「到底了」的壯闊感。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">地標</span><span class="tl-tag nature">海岸</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">18:00</div>
+            <div class="tl-card">
+              <h4>墾丁大街夜市</h4>
+              <p>台灣最有熱帶氣息的夜市，烤魚、芒果冰、椰子水，配上南台灣的晚風，完美收尾。</p>
+              <div class="tl-tags"><span class="tl-tag food">夜市</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>高雄市區走台17濱海往屏東。台26線（南迴前段）為沿岸風景路，強烈推薦；部分路段道路修整中，留意施工告示。</span>
+        </div>
+      </div>
+
+      <!-- DAY 6 -->
+      <div class="day-panel" data-panel="6">
+        <div class="day-header">
+          <span class="day-num">06</span>
+          <div class="day-meta">
+            <span class="day-city">墾丁 → 台東</span>
+            <span class="day-route">台26・台9南迴，轉入東海岸</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 150 km
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">07:30</div>
+            <div class="tl-card">
+              <h4>南迴公路 — 太平洋初見</h4>
+              <p>從屏東轉台9，翻越南迴山脈後第一眼見到湛藍太平洋，那種衝擊感無法言傳。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">海景</span><span class="tl-tag nature">山海</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">11:00</div>
+            <div class="tl-card">
+              <h4>金崙溫泉</h4>
+              <p>台東金崙的碳酸氫鈉泉，泡完皮膚滑嫩。露天湯池旁就是太平洋，邊泡湯邊聽浪聲是一種奢侈。</p>
+              <div class="tl-tags"><span class="tl-tag nature">溫泉</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">14:00</div>
+            <div class="tl-card">
+              <h4>台東市區 — 鐵花村</h4>
+              <p>台東的文創音樂基地，不定期有原住民音樂表演，在蕉葉林蔭下聽現場，時間慢了下來。</p>
+              <div class="tl-tags"><span class="tl-tag culture">音樂</span><span class="tl-tag culture">原住民</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">17:00</div>
+            <div class="tl-card">
+              <h4>初鹿牧場 &amp; 池上稻田</h4>
+              <p>趕在夕陽前抵達池上，金色稻浪在夕陽下搖曳，台灣東部最美農業地景之一。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">田景</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>南迴公路為國道前，過去是最危險路段，現已大幅改善。部分隧道較長，記得開頭燈。台東市內騎車舒適，道路寬敞，停車方便。</span>
+        </div>
+      </div>
+
+      <!-- DAY 7 -->
+      <div class="day-panel" data-panel="7">
+        <div class="day-header">
+          <span class="day-num">07</span>
+          <div class="day-meta">
+            <span class="day-city">台東 → 花蓮</span>
+            <span class="day-route">台11海岸公路，最美東海岸</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 170 km
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">08:00</div>
+            <div class="tl-card">
+              <h4>三仙台 — 八拱跨海橋</h4>
+              <p>台11線上最具代表性的地標，珊瑚礁岩島嶼與跨海步橋，海風強勁，適合一個人靜靜站著發呆。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">地標</span><span class="tl-tag nature">海岸</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">11:30</div>
+            <div class="tl-card">
+              <h4>成功鎮 — 旗魚生魚片</h4>
+              <p>成功是台東著名的漁港，市場內的旗魚料理新鮮實惠，搭配薑絲爆炒或清蒸都是一絕。</p>
+              <div class="tl-tags"><span class="tl-tag food">海鮮</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">14:00</div>
+            <div class="tl-card">
+              <h4>長濱 — 台11沿岸騎行</h4>
+              <p>這段是整個環島最讓人屏息的路段之一，公路緊貼峭壁，左邊山崖、右邊太平洋，騎慢一點，記住每個轉彎。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">公路</span><span class="tl-tag nature">山海</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">17:30</div>
+            <div class="tl-card">
+              <h4>花蓮市區 — 東大門夜市</h4>
+              <p>花蓮最大夜市，原住民風味小吃聚集，奇萊山豬肉、烤飛魚，配上花蓮特產麻糬，完美結束第七天。</p>
+              <div class="tl-tags"><span class="tl-tag food">夜市</span><span class="tl-tag culture">原住民</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>台11線全程風景壯麗但路況略窄，請靠右行駛，會車時需謹慎。強風天氣建議降速，部分路段有落石警示，留意標誌。</span>
+        </div>
+      </div>
+
+      <!-- DAY 8 -->
+      <div class="day-panel" data-panel="8">
+        <div class="day-header">
+          <span class="day-num">08</span>
+          <div class="day-meta">
+            <span class="day-city">花蓮 — 太魯閣峽谷</span>
+            <span class="day-route">峽谷一日深度探索（留守花蓮）</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🥾</span> 步行為主 · 機車輔助
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">07:00</div>
+            <div class="tl-card">
+              <h4>太魯閣牌樓 &amp; 砂卡礑步道</h4>
+              <p>清晨進峽谷人潮稀少，砂卡礑步道沿河而行，碧藍溪水與大理石峭壁讓人恍如置身異域。</p>
+              <div class="tl-tags"><span class="tl-tag nature">步道</span><span class="tl-tag scenic">峽谷</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">10:00</div>
+            <div class="tl-card">
+              <h4>燕子口 &amp; 九曲洞</h4>
+              <p>公路鑿穿大理石壁，頭頂上方是千噸岩石，腳下是湍急溪流。台灣人類工程最壯觀的見證之一。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">奇景</span><span class="tl-tag culture">工程</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">13:00</div>
+            <div class="tl-card">
+              <h4>天祥 — 祥德寺午休</h4>
+              <p>峽谷深處的小聚落，寺廟旁有簡餐，在翠綠山壁環繞下用午餐，是最天然的景觀餐廳。</p>
+              <div class="tl-tags"><span class="tl-tag culture">廟宇</span><span class="tl-tag food">午餐</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">16:00</div>
+            <div class="tl-card">
+              <h4>花蓮港 — 海景咖啡</h4>
+              <p>傍晚回到花蓮市，在港邊找一家景觀咖啡廳，對著太平洋整理今日的照片與心情。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">海景</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>太魯閣部分步道需事先申請入山証（如錐麓古道）。峽谷內機車停放有限制，建議停至遊客中心後步行或搭接駁。颱風前後注意道路封閉公告。</span>
+        </div>
+      </div>
+
+      <!-- DAY 9 -->
+      <div class="day-panel" data-panel="9">
+        <div class="day-header">
+          <span class="day-num">09</span>
+          <div class="day-meta">
+            <span class="day-city">花蓮 → 宜蘭</span>
+            <span class="day-route">蘇花公路，太平洋懸崖之路</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 90 km · 高難度路段
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">08:00</div>
+            <div class="tl-card">
+              <h4>蘇花公路出發</h4>
+              <p>台灣最有傳奇色彩的公路之一，懸崖邊的公路視野壯闊，但需要高度專注。天氣晴朗時是視覺盛宴。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">公路</span><span class="tl-tag nature">懸崖</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">11:00</div>
+            <div class="tl-card">
+              <h4>清水斷崖</h4>
+              <p>台灣最著名的斷崖景觀，1,000 公尺高的峭壁直插太平洋，是每位騎士必停的聖地。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">奇景</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">14:00</div>
+            <div class="tl-card">
+              <h4>宜蘭 — 羅東夜市預演</h4>
+              <p>抵達宜蘭，下午先在市區逛逛，找出想吃的攤位，晚上再正式出擊羅東夜市。</p>
+              <div class="tl-tags"><span class="tl-tag food">小吃</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">18:00</div>
+            <div class="tl-card">
+              <h4>羅東夜市 — 倒數第二夜</h4>
+              <p>蔥油餅、三星蔥餅、卜肉、米粉羹，宜蘭夜市的特色在於食材特別新鮮，是農業大縣的驕傲。</p>
+              <div class="tl-tags"><span class="tl-tag food">夜市</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>蘇花公路部分路段已改建為蘇花改隧道，機車可走舊蘇花路段欣賞景色（確認封路資訊再出發）。路況濕滑時嚴禁大意，建議裝備全套防雨裝。</span>
+        </div>
+      </div>
+
+      <!-- DAY 10 -->
+      <div class="day-panel" data-panel="10">
+        <div class="day-header">
+          <span class="day-num">10</span>
+          <div class="day-meta">
+            <span class="day-city">宜蘭 → 台北 — 歸途</span>
+            <span class="day-route">北宜公路或雪山隧道，回到原點</span>
+          </div>
+          <div class="day-transport">
+            <span class="icon">🏍</span> 約 80 km · 壯遊終章
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">08:30</div>
+            <div class="tl-card">
+              <h4>北宜公路 — 九彎十八拐</h4>
+              <p>選擇北宜公路（台9丙）而非隧道，這段蜿蜒山路是環島最後的山路告別儀式，霧中俯瞰宜蘭平原如詩如畫。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">山路</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">11:00</div>
+            <div class="tl-card">
+              <h4>坪林 — 茶鄉小歇</h4>
+              <p>坪林是台灣包種茶的故鄉，在茶行喝一杯現泡清茶，配著茶葉蛋，為最後的路程蓄積能量。</p>
+              <div class="tl-tags"><span class="tl-tag food">茶飲</span><span class="tl-tag culture">茶文化</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">13:30</div>
+            <div class="tl-card">
+              <h4>台北 — 回到原點</h4>
+              <p>踏入台北市界的那一刻，喇叭輕輕按一聲，宣告十日、1,200 公里、七個縣市的壯遊圓滿完成。</p>
+              <div class="tl-tags"><span class="tl-tag scenic">終點</span></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-time">15:00</div>
+            <div class="tl-card">
+              <h4>慶功午宴</h4>
+              <p>找一家喜歡的台灣料理餐廳，召集旅伴，用一桌好菜為環島畫下完美句點。</p>
+              <div class="tl-tags"><span class="tl-tag food">慶功</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="transport-note">
+          <strong>🗺 交通備註</strong>
+          <span>北宜公路不允許大型車，機車行駛無礙。若趕時間可走國5（雪隧）免費機車道接內湖。台北週末市區交通壅塞，中午前抵達最舒適。</span>
+        </div>
+      </div>
+
+    </div><!-- end dayPanels -->
+  </div>
+</section>
+
+<!-- ═══ ROUTE VISUAL ═══ -->
+<section class="route-section" id="route">
+  <p class="section-label reveal">Route Map</p>
+  <h2 class="section-title reveal">順時針環島路線</h2>
+  <div class="route-visual reveal">
+    <div class="route-svg-wrap">
+      <svg viewBox="0 0 340 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#f0ebe0;">
+
+        <!-- Taiwan island shape (simplified) -->
+        <path d="M170 30 C210 28 250 50 265 90 C280 130 275 170 270 200
+                 C265 230 275 260 270 295 C263 330 250 360 235 385
+                 C218 410 200 430 178 445 C158 458 140 455 122 445
+                 C100 432 82 410 70 388 C55 362 50 335 52 305
+                 C54 275 60 250 58 220 C55 185 50 155 62 120
+                 C75 82 120 32 170 30 Z"
+              fill="#c9a97a" fill-opacity=".25" stroke="#c9a97a" stroke-width="2"/>
+
+        <!-- Mountain range hints -->
+        <path d="M160 80 L175 50 L190 80" fill="none" stroke="#7a5c3c" stroke-width="1.5" stroke-opacity=".5"/>
+        <path d="M155 110 L168 85 L182 110" fill="none" stroke="#7a5c3c" stroke-width="1" stroke-opacity=".4"/>
+
+        <!-- Route arrow path (clockwise) -->
+        <path d="M170 60 C215 62 255 85 265 130 C272 165 265 200 262 230
+                 C258 265 268 295 262 325 C252 358 230 385 200 410
+                 C182 425 165 438 148 430 C120 418 95 395 80 365
+                 C62 333 58 300 60 270 C62 240 68 210 66 178
+                 C62 140 68 105 88 80 C110 55 148 56 170 60"
+              fill="none" stroke="#c9a97a" stroke-width="3" stroke-dasharray="8 5"
+              stroke-linecap="round" marker-end="url(#arrowhead)"/>
+
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <path d="M0 0 L8 4 L0 8 Z" fill="#c9a97a"/>
+          </marker>
+        </defs>
+
+        <!-- City dots & labels -->
+        <!-- Taipei -->
+        <circle cx="172" cy="62" r="7" fill="#7a5c3c"/>
+        <circle cx="172" cy="62" r="12" fill="#7a5c3c" fill-opacity=".18"/>
+        <text x="185" y="66" font-family="Noto Sans TC,sans-serif" font-size="11" fill="#3d2f20" font-weight="500">台北</text>
+
+        <!-- Taoyuan/Hsinchu -->
+        <circle cx="148" cy="105" r="5" fill="#c9a97a"/>
+        <text x="90" y="102" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">桃園・新竹</text>
+
+        <!-- Taichung -->
+        <circle cx="122" cy="180" r="5" fill="#c9a97a"/>
+        <text x="60" y="176" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">台中</text>
+
+        <!-- Chiayi/Alishan -->
+        <circle cx="130" cy="240" r="5" fill="#6b7c5c"/>
+        <text x="60" y="237" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">嘉義・阿里山</text>
+
+        <!-- Tainan -->
+        <circle cx="138" cy="295" r="5" fill="#c9a97a"/>
+        <text x="70" y="292" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">台南</text>
+
+        <!-- Kaohsiung/Kenting -->
+        <circle cx="155" cy="355" r="5" fill="#c9a97a"/>
+        <text x="85" y="352" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">高雄・墾丁</text>
+
+        <!-- Taitung -->
+        <circle cx="228" cy="350" r="5" fill="#8ab4cc"/>
+        <text x="236" y="354" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">台東</text>
+
+        <!-- Hualien -->
+        <circle cx="245" cy="240" r="5" fill="#8ab4cc"/>
+        <text x="252" y="244" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">花蓮</text>
+
+        <!-- Yilan -->
+        <circle cx="232" cy="145" r="5" fill="#8ab4cc"/>
+        <text x="238" y="149" font-family="Noto Sans TC,sans-serif" font-size="10" fill="#5a3e28">宜蘭</text>
+
+        <!-- Legend -->
+        <rect x="10" y="440" width="140" height="32" rx="8" fill="white" fill-opacity=".8"/>
+        <circle cx="25" cy="456" r="5" fill="#7a5c3c"/>
+        <text x="34" y="460" font-family="Noto Sans TC,sans-serif" font-size="9" fill="#3d2f20">主要城市</text>
+        <circle cx="90" cy="456" r="5" fill="#8ab4cc"/>
+        <text x="99" y="460" font-family="Noto Sans TC,sans-serif" font-size="9" fill="#3d2f20">東部城市</text>
+
+        <!-- km label -->
+        <text x="170" y="260" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="22" fill="#c9a97a" font-weight="700" fill-opacity=".35">1,200 km</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TIPS ═══ -->
+<section class="tips" id="tips">
+  <p class="section-label reveal" style="text-align:center">Rider's Notes</p>
+  <h2 class="section-title reveal" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;">出發前必知的騎士筆記</h2>
+  <div class="tips-grid">
+    <div class="tip-card reveal">
+      <div class="tip-icon">🏍</div>
+      <h3>車輛準備</h3>
+      <p>出發前一週送廠保養，確認輪胎胎壓、剎車皮、機油、燈光。排氣量建議 125cc 以上，長途更穩定。</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-icon">🪖</div>
+      <h3>安全裝備</h3>
+      <p>全罩式安全帽、防摔夾克、護膝護肘、手套缺一不可。台灣法規強制要求安全帽，其餘為個人安全投資。</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-icon">🌦</div>
+      <h3>天氣掌握</h3>
+      <p>下載「中央氣象署」App，每日查詢路段天氣。東海岸容易遇午後雷陣雨，早出發是鐵則。</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-icon">⛽</div>
+      <h3>加油策略</h3>
+      <p>山區、東部加油站間距較大，建議油量低於三分之一就補油。台灣 95 無鉛汽油普遍，品質穩定。</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-icon">🏨</div>
+      <h3>住宿預訂</h3>
+      <p>旺季（暑假、連假）至少提前兩週訂房。推薦民宿多於飯店，店主往往能提供最在地的路況建議。</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-icon">📱</div>
+      <h3>導航工具</h3>
+      <p>Google Maps 離線地圖必存。山區收訊差，事前截圖路段圖是應急好習慣。可搭配 Waze 看即時路況。</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-icon">💊</div>
+      <h3>健康與急救</h3>
+      <p>小型急救包放行李箱：OK繃、消毒棉、止痛藥、暈車藥。山路騎久若有不適，立即找地方休息。</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-icon">💳</div>
+      <h3>旅費估算</h3>
+      <p>十天全程自助約 NT$ 15,000–25,000（含油資、住宿、餐食）。現金與信用卡並備，偏鄉仍多現金消費。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>台灣機車環島 · 十日壯遊 &nbsp;｜&nbsp; <em>Made with 🏍 & ❤️</em></p>
+  <p style="margin-top:.5rem;">出發吧，每段路都是你自己的詩。</p>
+</footer>
+
+<script>
+// ── Day Tab Switcher ─────────────────────────
+const tabs   = document.querySelectorAll('.day-tab');
+const panels = document.querySelectorAll('.day-panel');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const day = tab.dataset.day;
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.day-panel[data-panel="${day}"]`).classList.add('active');
+  });
+});
+
+// ── Scroll Reveal ────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+reveals.forEach(r => observer.observe(r));
+
+// ── Nav active highlight on scroll ───────────
+const sections = document.querySelectorAll('section[id], nav');
+const navLinks  = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--clay)' : '';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
