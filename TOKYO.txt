@@ -1,0 +1,537 @@
+!DOCTYPE html
+html lang=zh-Hant
+head
+meta charset=UTF-8
+meta name=viewport content=width=device-width, initial-scale=1.0
+title東京・富士山・鎌倉 七日家族之旅title
+link rel=preconnect href=httpsfonts.googleapis.com
+link rel=preconnect href=httpsfonts.gstatic.com crossorigin
+link href=httpsfonts.googleapis.comcss2family=Noto+Serif+TCwght@400;600;700;900&family=Noto+Sans+TCwght@300;400;500;700&family=Shippori+Minchowght@500;700&display=swap rel=stylesheet
+style
+  root{
+    --washi#F4EEE0;
+    --washi-deep#ECE3CD;
+    --sumi#2B2724;
+    --ai#1F3F52;
+    --ai-soft#476177;
+    --shu#B23A2E;
+    --shu-deep#8E2C22;
+    --matsu#5C6F57;
+    --kin#A9844F;
+    --linergba(43,39,36,0.16);
+    --maxw760px;
+  }
+  {box-sizingborder-box;}
+  html{scroll-behaviorsmooth;}
+  body{
+    margin0;
+    backgroundvar(--washi);
+    background-image
+      radial-gradient(ellipse at 20% 10%, rgba(169,132,79,0.07), transparent 60%),
+      radial-gradient(ellipse at 80% 90%, rgba(31,63,82,0.06), transparent 60%);
+    colorvar(--sumi);
+    font-familyNoto Sans TC, sans-serif;
+    line-height1.85;
+    -webkit-font-smoothingantialiased;
+  }
+  .scroll-frame{
+    max-widthvar(--maxw);
+    margin0 auto;
+    padding0 22px;
+    border-left1px solid var(--line);
+    border-right1px solid var(--line);
+    positionrelative;
+  }
+  .scroll-framebefore, .scroll-frameafter{
+    content;
+    positionabsolute;
+    left0;right0;height14px;
+    backgroundrepeating-linear-gradient(90deg, var(--kin) 0 6px, transparent 6px 14px);
+    opacity0.55;
+  }
+  .scroll-framebefore{top0;}
+  .scroll-frameafter{bottom0;}
+
+   ---------- HERO ---------- 
+  .hero{
+    padding54px 0 38px;
+    text-aligncenter;
+    positionrelative;
+  }
+  .hero .eyebrow{
+    font-familyShippori Mincho, serif;
+    colorvar(--shu);
+    letter-spacing0.5em;
+    font-size13px;
+    margin-bottom18px;
+  }
+  .hero h1{
+    font-familyNoto Serif TC, serif;
+    font-weight900;
+    font-sizeclamp(30px,7vw,44px);
+    line-height1.4;
+    margin0 0 10px;
+    colorvar(--ai);
+  }
+  .hero h1 span{colorvar(--shu);}
+  .hero .sub{
+    font-size14.5px;
+    colorvar(--ai-soft);
+    letter-spacing0.12em;
+    margin-bottom30px;
+  }
+  .hero svg{width100%;max-width420px;margin0 auto 22px;displayblock;}
+  .hero-rule{
+    width64px;height2px;backgroundvar(--shu);margin26px auto 0;
+  }
+
+   ---------- OVERVIEW CARDS ---------- 
+  .overview{
+    displaygrid;
+    grid-template-columnsrepeat(2,1fr);
+    gap14px;
+    margin34px 0 56px;
+  }
+  .ocard{
+    border1px solid var(--line);
+    backgroundrgba(255,255,255,0.35);
+    padding16px 14px;
+    border-radius2px;
+  }
+  .ocard .label{
+    font-size11px;letter-spacing0.18em;colorvar(--shu);font-familyShippori Mincho,serif;margin-bottom6px;
+  }
+  .ocard .val{font-size14.5px;colorvar(--sumi);font-weight500;}
+
+   ---------- DAY SECTION ---------- 
+  .day{
+    padding54px 0 10px;
+    border-top1px solid var(--line);
+    positionrelative;
+  }
+  .dayfirst-of-type{border-topnone;}
+  .day-head{
+    displayflex;
+    align-itemsflex-start;
+    gap20px;
+    margin-bottom22px;
+  }
+  .hanko{
+    flex0 0 auto;
+    width58px;height58px;
+    backgroundvar(--shu);
+    color#F4EEE0;
+    border-radius3px;
+    displayflex;align-itemscenter;justify-contentcenter;
+    font-familyNoto Serif TC,serif;
+    font-weight900;
+    font-size22px;
+    transformrotate(-3deg);
+    box-shadow0 2px 0 rgba(0,0,0,0.08);
+    border2px solid rgba(244,238,224,0.5);
+    letter-spacing-1px;
+  }
+  .day-head .meta{padding-top2px;}
+  .day-head .date{
+    font-size12.5px;colorvar(--ai-soft);letter-spacing0.15em;margin-bottom4px;font-familyShippori Mincho,serif;
+  }
+  .day-head h2{
+    font-familyNoto Serif TC,serif;
+    font-sizeclamp(21px,4.5vw,26px);
+    margin0;
+    colorvar(--ai);
+    font-weight700;
+  }
+  .day-head h2 small{
+    displayblock;font-size13px;colorvar(--matsu);font-weight400;margin-top3px;letter-spacing0.05em;
+  }
+
+  .tag-row{displayflex;gap8px;flex-wrapwrap;margin14px 0 24px;}
+  .tag{
+    font-size11.5px;
+    border1px solid var(--kin);
+    colorvar(--kin);
+    padding3px 10px;
+    border-radius20px;
+    letter-spacing0.05em;
+  }
+
+  .timeline{margin0 0 22px;padding0;list-stylenone;}
+  .timeline li{
+    displaygrid;
+    grid-template-columns64px 1fr;
+    gap14px;
+    padding11px 0;
+    border-bottom1px dashed var(--line);
+    font-size14.5px;
+  }
+  .timeline lilast-child{border-bottomnone;}
+  .timeline .t{
+    colorvar(--shu);
+    font-familyShippori Mincho,serif;
+    font-weight700;
+    font-size13.5px;
+    padding-top1px;
+  }
+  .timeline .c b{colorvar(--ai);}
+  .timeline .c .note{
+    displayblock;colorvar(--ai-soft);font-size12.8px;margin-top2px;
+  }
+
+  .box{
+    margin16px 0;
+    padding16px 18px;
+    border-left3px solid var(--ai);
+    backgroundrgba(31,63,82,0.05);
+    font-size13.8px;
+  }
+  .box.food{border-left-colorvar(--matsu);backgroundrgba(92,111,87,0.06);}
+  .box.alert{border-left-colorvar(--shu);backgroundrgba(178,58,46,0.07);}
+  .box .h{
+    font-familyShippori Mincho,serif;font-weight700;font-size13.5px;letter-spacing0.08em;
+    margin-bottom6px;displayflex;align-itemscenter;gap6px;
+  }
+  .box.t .h{colorvar(--ai);}
+  .box.food .h{colorvar(--matsu);}
+  .box.alert .h{colorvar(--shu);}
+  .box ul{margin6px 0 0;padding-left18px;}
+  .box li{margin-bottom4px;}
+
+  footer{
+    padding50px 0 70px;
+    text-aligncenter;
+  }
+  footer .h{
+    font-familyNoto Serif TC,serif;colorvar(--ai);font-size18px;font-weight700;margin-bottom16px;
+  }
+  footer .checklist{
+    text-alignleft;
+    displayinline-block;
+    font-size13.5px;
+    colorvar(--sumi);
+    backgroundrgba(255,255,255,0.4);
+    border1px solid var(--line);
+    padding18px 24px;
+    border-radius2px;
+  }
+  footer .checklist li{margin-bottom6px;}
+  footer .sign{
+    margin-top34px;font-size11.5px;colorvar(--ai-soft);letter-spacing0.2em;
+  }
+
+  @media(min-width600px){
+    .overview{grid-template-columnsrepeat(4,1fr);}
+  }
+style
+head
+body
+div class=scroll-frame
+
+  !-- HERO --
+  section class=hero
+    div class=eyebrow夏 ・ 家 族 旅 程div
+    svg viewBox=0 0 420 140 fill=none xmlns=httpwww.w3.org2000svg
+      path d=M40 120 L160 20 L210 70 L260 15 L380 120 stroke=#1F3F52 stroke-width=2 opacity=0.55
+      path d=M150 35 L170 35 L172 45 L148 45 Z fill=#F4EEE0 stroke=#1F3F52 stroke-width=1.4
+      path d=M255 30 L268 30 L269 38 L254 38 Z fill=#F4EEE0 stroke=#1F3F52 stroke-width=1.4
+      g opacity=0.85
+        rect x=195 y=95 width=8 height=40 fill=#B23A2E
+        rect x=222 y=95 width=8 height=40 fill=#B23A2E
+        rect x=190 y=95 width=48 height=7 fill=#B23A2E
+        rect x=193 y=112 width=42 height=6 fill=#B23A2E
+      g
+    svg
+    h1東京・富士山・鎌倉brspan七日六夜span 家族之旅h1
+    div class=sub2026 . 06 . 27 — 07 . 03　｜　四人成行・步調從容div
+    div class=hero-rulediv
+  section
+
+  !-- OVERVIEW --
+  div class=overview
+    div class=ocarddiv class=label旅 程divdiv class=val7天6夜divdiv
+    div class=ocarddiv class=label成 員divdiv class=val4位大人divdiv
+    div class=ocarddiv class=label交 通divdiv class=val電車＋自駕divdiv
+    div class=ocarddiv class=label節 奏divdiv class=val舒緩・不趕場divdiv
+  div
+
+  !-- DAY 1 --
+  section class=day
+    div class=day-head
+      div class=hanko一div
+      div class=meta
+        div class=date627（六）div
+        h2抵達東京small成田機場 → 上野・淺草　｜　市區大眾運輸smallh2
+      div
+    div
+    div class=tag-rowspan class=tag桃園 → 成田spanspan class=tag夜間抵達spanspan class=tag輕鬆收尾spandiv
+    ul class=timeline
+      lispan class=t1350spanspan class=cb桃園機場起飛bspan class=note建議提前2.5小時抵達桃園機場辦理登機spanspanli
+      lispan class=t2000spanspan class=cb抵達成田機場bspan class=note入境審查＋提領行李，預估約 2040 出關spanspanli
+      lispan class=t2100spanspan class=cb搭乘前往市區bspan class=note建議搭京成 Skyliner（成田機場→上野，約41分）最省體力；若想省錢可改搭京成本線特急（約75-80分，需轉乘）spanspanli
+      lispan class=t2200spanspan class=cb抵達飯店（上野／淺草一帶）bspan class=note辦理入住，行李安頓spanspanli
+      lispan class=t2230spanspan class=cb簡單宵夜・早點休息bspan class=note不安排景點，讓長輩充分休息以應付明天行程spanspanli
+    ul
+    div class=box t
+      div class=h🚆 交通建議div
+      ul
+        li抵達後直接於機場購買 Skyliner 車票（也可事先於台灣訂好優惠票券）li
+        li若飯店在淺草，Skyliner 到上野後再轉乘地下鐵銀座線一站即達淺草站li
+        li建議於市區購入西瓜卡  Suica（IC卡）供接下來幾天使用li
+      ul
+    div
+    div class=box food
+      div class=h🍙 宵夜・簡餐選擇div
+      ul
+        li飯店周邊超商（7-Eleven／Lawson）熱食、御飯糰，方便又不費時li
+        li淺草、上野一帶有不少深夜營業的拉麵店，如一蘭、麵屋一燈，適合簡單吃碗熱拉麵暖胃li
+      ul
+    div
+  section
+
+  !-- DAY 2 --
+  section class=day
+    div class=day-head
+      div class=hanko二div
+      div class=meta
+        div class=date628（日）div
+        h2淺草・晴空塔・上野small市區東側　｜　地下鐵＋步行smallh2
+      div
+    div
+    div class=tag-rowspan class=tag淺草寺spanspan class=tag東京晴空塔spanspan class=tag上野公園spandiv
+    ul class=timeline
+      lispan class=t0900spanspan class=cb淺草寺・雷門・仲見世通bspan class=note早上人較少，適合長輩慢慢逛，順道採買淺草伴手禮spanspanli
+      lispan class=t1100spanspan class=cb步行或搭東武晴空塔線往東京晴空塔bspan class=note從淺草步行約20分可達，或於淺草站搭東武線一站直達「とうきょうスカイツリー」站spanspanli
+      lispan class=t1130spanspan class=cb東京晴空塔展望台bspan class=note建議事先預約天望甲板門票，避免現場排隊spanspanli
+      lispan class=t1230spanspan class=cb晴空街道（Solamachi）午餐bspan class=note美食街選擇多、可分桌各自選餐，適合家族聚餐spanspanli
+      lispan class=t1430spanspan class=cb返回上野，逛上野公園bspan class=note搭東武線回淺草，轉地下鐵銀座線往上野（約10分鐘車程）spanspanli
+      lispan class=t1500spanspan class=cb上野恩賜公園散步bspan class=note園區平坦好走，可視體力選擇東京國立博物館或上野動物園其一spanspanli
+      lispan class=t1800spanspan class=cb返回飯店休息，晚餐bspanli
+    ul
+    div class=box t
+      div class=h🚆 交通建議div
+      ul
+        li淺草 → 晴空塔：步行20分鐘或搭東武晴空塔線（1站）li
+        li晴空塔 → 上野：搭地下鐵銀座線或日比谷線，約10-15分鐘（含轉乘步行）li
+      ul
+    div
+    div class=box food
+      div class=h🍽 美食推薦div
+      ul
+        li淺草：百年老店「大黑家」天丼、「淺草今半」壽喜燒，適合家庭聚餐li
+        li晴空街道：美食街選擇豐富，從和食到洋食都有，適合各自挑選喜好li
+        li上野：阿夫利拉麵、上野百貨美食街，多人用餐方便li
+      ul
+    div
+  section
+
+  !-- DAY 3 --
+  section class=day
+    div class=day-head
+      div class=hanko三div
+      div class=meta
+        div class=date629（一）div
+        h2秋葉原・銀座small市區東側　｜　地下鐵smallh2
+      div
+    div
+    div class=tag-rowspan class=tag秋葉原電器街spanspan class=tag銀座購物spanspan class=tag悠閒步調spandiv
+    ul class=timeline
+      lispan class=t0930spanspan class=cb搭地下鐵往秋葉原bspan class=note由上野／淺草搭日比谷線或銀座線轉乘，約10-15分鐘spanspanli
+      lispan class=t1000spanspan class=cb秋葉原電器街・動漫商店bspan class=note逛Yodobashi、電器免稅店，年輕人與長輩可分頭逛後再會合spanspanli
+      lispan class=t1200spanspan class=cb午餐bspanli
+      lispan class=t1330spanspan class=cb搭日比谷線直達銀座bspan class=note秋葉原→銀座，日比谷線直達約10分鐘，不需轉車spanspanli
+      lispan class=t1400spanspan class=cb銀座漫步・百貨購物bspan class=noteGinza Six、三越、和光本館，適合悠閒逛街、買伴手禮spanspanli
+      lispan class=t1630spanspan class=cb歌舞伎座外觀拍照（順遊）bspanli
+      lispan class=t1800spanspan class=cb銀座晚餐bspanli
+      lispan class=t2000spanspan class=cb搭地下鐵返回飯店bspanli
+    ul
+    div class=box t
+      div class=h🚆 交通建議div
+      ul
+        li上野／淺草 → 秋葉原：銀座線或日比谷線，約10-15分鐘li
+        li秋葉原 → 銀座：日比谷線直達，約10分鐘，全程不轉乘最省力li
+      ul
+    div
+    div class=box food
+      div class=h🍽 美食推薦div
+      ul
+        li秋葉原：豬排專門店「とんかつ ぼんた」、家庭式洋食店li
+        li銀座：天國天丼、壽司（次郎系平價分店）、或銀座三越地下美食街，多種選擇兼顧長輩口味li
+      ul
+    div
+  section
+
+  !-- DAY 4 --
+  section class=day
+    div class=day-head
+      div class=hanko四div
+      div class=meta
+        div class=date630（二）div
+        h2東京 → 富士山small自駕租車　｜　車程約2-2.5小時smallh2
+      div
+    div
+    div class=tag-rowspan class=tag河口湖spanspan class=tag忍野八海spanspan class=tagかちかち山纜車spanspan class=tag天氣彈性spandiv
+    ul class=timeline
+      lispan class=t0830spanspan class=cb市區租車門市取車bspan class=note建議於飯店附近租車行（如上野站周邊 Times Car  Toyota Rent a Car）辦理手續spanspanli
+      lispan class=t0900spanspan class=cb出發走中央高速公路前往河口湖bspan class=note車程約2-2.5小時（視車流量），中途可於休息站稍作停留spanspanli
+      lispan class=t1130spanspan class=cb忍野八海bspan class=note古樸小村落，地勢平坦好走，天氣好可遠眺富士山spanspanli
+      lispan class=t1230spanspan class=cb午餐：河口湖周邊吃ほうとう（餺飥麵）bspan class=note當地特色家庭料理，份量足、暖胃，適合全家spanspanli
+      lispan class=t1400spanspan class=cb河口湖畔散步  かちかち山纜車bspan class=note纜車可省去爬山體力，山頂展望台可同時眺望富士山與河口湖，是長輩也能輕鬆抵達的最佳視角點spanspanli
+      lispan class=t1630spanspan class=cb視天氣彈性安排：新倉山淺間公園（忠靈塔）bspan class=note⚠️ 此處需爬約398階樓梯，若長輩體力不足或天候不佳可省略，改為湖畔咖啡廳休息spanspanli
+      lispan class=t1800spanspan class=cb入住河口湖周邊飯店（建議含富士山view或溫泉）bspanli
+    ul
+    div class=box t
+      div class=h🚗 自駕資訊div
+      ul
+        li路線：東京市區 → 中央高速公路 → 河口湖IC，全程約100km，車程約2-2.5小時li
+        li建議避開週末／連假車流尖峰時段出發，平日上午車況較順li
+        li山區午後容易起雲霧，下午視線會比上午略差，重要拍照行程建議排在抵達後盡快進行li
+      ul
+    div
+    div class=box alert
+      div class=h⛰ 富士山彈性原則（最高優先：看到富士山）div
+      ul
+        li抵達後若天氣晴朗，立刻優先安排「能眺望富士山」的行程（纜車展望台、湖畔），其餘行程可順序對調或刪減li
+        li若當天雲霧多，可將戶外賞景行程移至次日（71）清晨再嘗試，今日改安排忍野八海、ほうとう午餐、溫泉飯店休息等不受天氣影響的活動li
+        li飯店選擇含露天溫泉、富士山view房型，即使白天看不到，晚間或清晨仍有機會捕捉山景li
+      ul
+    div
+    div class=box food
+      div class=h🍽 美食推薦div
+      ul
+        liほうとう不動：河口湖最知名的餺飥麵老店，份量大適合全家分享li
+        li富士山周邊多溫泉飯店附晚餐會席料理，可考慮選擇含晚餐的住宿方案，省去找餐廳的時間li
+      ul
+    div
+  section
+
+  !-- DAY 5 --
+  section class=day
+    div class=day-head
+      div class=hanko五div
+      div class=meta
+        div class=date71（三）div
+        h2富士山 → 鎌倉 → 東京small自駕還車　｜　車程約2.5-3小時smallh2
+      div
+    div
+    div class=tag-rowspan class=tag清晨富士機動spanspan class=tag鎌倉大佛spanspan class=tag小町通spanspan class=tag傍晚還車spandiv
+    ul class=timeline
+      lispan class=t0630spanspan class=cb（彈性）清晨富士山觀景時段bspan class=note清晨空氣通透、雲層較少，是全程「看見富士山」機率最高的時刻；視昨日達成狀況決定是否安排，地點可選飯店房內、湖畔或本町通商店街（街道直線對望富士山）spanspanli
+      lispan class=t0900spanspan class=cb飯店早餐、退房bspanli
+      lispan class=t1000spanspan class=cb出發前往鎌倉bspan class=note走東富士道路接東名高速公路，車程約2.5-3小時，沿途可於休息站稍停spanspanli
+      lispan class=t1300spanspan class=cb抵達鎌倉，午餐bspan class=note推薦吻仔魚（しらす）丼，鎌倉沿海特色料理spanspanli
+      lispan class=t1400spanspan class=cb鶴岡八幡宮bspan class=note參道平坦，主殿前有階梯，可量力參觀spanspanli
+      lispan class=t1500spanspan class=cb小町通商店街bspan class=note逛街吃點心，地勢平坦，長輩可坐下來喝茶休息spanspanli
+      lispan class=t1600spanspan class=cb高德院・鎌倉大佛bspan class=note境內平坦，適合悠閒參觀拍照spanspanli
+      lispan class=t1700spanspan class=cb開車返回東京市區bspan class=note車程約1-1.5小時（視路況及還車門市位置）spanspanli
+      lispan class=t1830spanspan class=cb市區還車bspan class=note建議於同一租車公司門市還車，並提前確認還車截止時間spanspanli
+      lispan class=t1900spanspan class=cb入住東京市區飯店（澀谷／東京鐵塔周邊建議）bspanli
+    ul
+    div class=box t
+      div class=h🚗 自駕資訊div
+      ul
+        li路線：河口湖 → 東富士五湖道路 → 東名高速公路 → 鎌倉，全程約100km，車程約2.5-3小時li
+        li鎌倉市區道路狹小、停車位有限，建議導航至大型付費停車場，步行遊覽各景點li
+        li路線：鎌倉 → 東名高速／首都高速 → 東京市區還車點，車程約1-1.5小時，建議預留還車緩衝時間li
+      ul
+    div
+    div class=box alert
+      div class=h⛰ 富士山彈性原則（延續）div
+      ul
+        li若630已順利看到富士山，今日清晨可改為從容早餐、不特別早起li
+        li若630未能如願，今日清晨務必把握，並可考慮稍微延後出發時間，多留一個觀景機會li
+        li無論能否看到富士山，皆不影響後續鎌倉與還車行程時間，行程設計上保留約1小時彈性緩衝li
+      ul
+    div
+    div class=box food
+      div class=h🍽 美食推薦div
+      ul
+        li鎌倉：力餐廳的生しらす丼（生吻仔魚丼，當季限定），或熟しらす丼（熟食版本全年供應，較適合不敢吃生食者）li
+        li小町通：豐島屋鴿子餅乾（伴手禮）、各式可坐下休息的茶屋甜點店li
+      ul
+    div
+  section
+
+  !-- DAY 6 --
+  section class=day
+    div class=day-head
+      div class=hanko六div
+      div class=meta
+        div class=date72（四）div
+        h2東京鐵塔・澀谷small市區　｜　地下鐵smallh2
+      div
+    div
+    div class=tag-rowspan class=tag東京鐵塔spanspan class=tag澀谷十字路口spanspan class=tag市區壓軸spandiv
+    ul class=timeline
+      lispan class=t1000spanspan class=cb飯店出發，悠閒起床bspan class=note前一天舟車勞頓，今日上午行程刻意安排較晚出發spanspanli
+      lispan class=t1030spanspan class=cb東京鐵塔展望台bspan class=note搭都營大江戶線至赤羽橋站，或日比谷線至神谷町站，步行約5-8分鐘spanspanli
+      lispan class=t1200spanspan class=cb午餐（麻布十番／六本木周邊）bspanli
+      lispan class=t1400spanspan class=cb搭地下鐵前往澀谷bspan class=note日比谷線轉乘，約20分鐘可達澀谷站spanspanli
+      lispan class=t1430spanspan class=cb澀谷十字路口・忠犬八公像bspanli
+      lispan class=t1500spanspan class=cb澀谷Sky展望台（選項）或自由購物時間bspan class=note長輩若體力有限，可在澀谷站周邊咖啡廳休息，年輕人自行前往展望台spanspanli
+      lispan class=t1800spanspan class=cb澀谷晚餐bspanli
+      lispan class=t2000spanspan class=cb返回飯店，整理行李準備隔日返程bspanli
+    ul
+    div class=box t
+      div class=h🚆 交通建議div
+      ul
+        li飯店 → 東京鐵塔：依飯店位置搭都營大江戶線（赤羽橋站）或日比谷線（神谷町站）li
+        li東京鐵塔 → 澀谷：日比谷線轉乘銀座線或搭乘JR山手線，約20分鐘li
+      ul
+    div
+    div class=box food
+      div class=h🍽 美食推薦div
+      ul
+        li麻布十番：家庭式日式洋食、鰻魚飯老店，環境安靜適合長輩li
+        li澀谷：澀谷西武  SHIBUYA109周邊美食街，選擇多元；或鳥貴族等居酒屋類全家聚餐li
+      ul
+    div
+  section
+
+  !-- DAY 7 --
+  section class=day
+    div class=day-head
+      div class=hanko七div
+      div class=meta
+        div class=date73（五）div
+        h2返程日small市區 → 成田機場　｜　1655起飛smallh2
+      div
+    div
+    div class=tag-rowspan class=tag輕鬆收尾spanspan class=tag把握時間赴機場spandiv
+    ul class=timeline
+      lispan class=t0900spanspan class=cb飯店早餐，悠閒整裝bspanli
+      lispan class=t0930spanspan class=cb飯店周邊最後採買  退房bspan class=note不安排遠距離景點，以飯店步行可達的便利店、藥妝店為主，避免趕路spanspanli
+      lispan class=t1130spanspan class=cb從飯店出發前往成田機場bspan class=note建議搭乘Skyliner或N'EX，依飯店位置選擇最近車站spanspanli
+      lispan class=t1300spanspan class=cb抵達成田機場bspan class=note距起飛約3.5-4小時，預留充足時間spanspanli
+      lispan class=t1330spanspan class=cb機場內辦理登機、退稅、最後免稅購物bspanli
+      lispan class=t1500spanspan class=cb通過安檢、前往登機門bspanli
+      lispan class=t1655spanspan class=cb班機起飛bspanli
+      lispan class=t1940spanspan class=cb抵達桃園機場，旅程結束bspanli
+    ul
+    div class=box alert
+      div class=h✈ 機場時間提醒div
+      ul
+        li建議最晚 1130 前離開飯店，市區到成田機場約60-90分鐘車程，加上機場手續抓3.5-4小時最為保險li
+        li若飯店距市區車站較遠或行李較多，建議事先預約機場利木津巴士（部分路線可直達飯店），省去轉車搬行李的辛苦li
+        li退稅、伴手禮若還沒買齊，可安排在成田機場內免稅店完成，不需特別安排市區購物時段li
+      ul
+    div
+  section
+
+  !-- FOOTER --
+  footer
+    div class=h旅途叮嚀div
+    div class=checklist
+      ul
+        li630、71 富士山周邊行程已預留彈性，請依現場天氣隨時調整順序，「看到富士山」優先於既定行程li
+        li自駕日請確認租車保險（建議加保全險）及還車油量規定li
+        li梅雨季末期天候多變，建議隨身攜帶輕便雨具li
+        li長輩體力為主要考量，每日已安排上午緊湊、下午放緩的節奏，可視狀況隨時於飯店或咖啡廳休息li
+        liSuica／西瓜卡建議於第一天購入，可用於電車、巴士及部分商店消費li
+      ul
+    div
+    div class=sign祝 旅途平安・閤家歡樂div
+  footer
+
+div
+body
+html
